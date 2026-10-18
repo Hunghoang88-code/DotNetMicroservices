@@ -101,6 +101,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{1B98860C-B54
 		Web\yarn.lock = Web\yarn.lock
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PricingService.IntegrationTest", "PricingService.IntegrationTest\PricingService.IntegrationTest.csproj", "{54BADB52-6CD6-94C6-B6FA-E0A7D539B9EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -423,6 +425,18 @@ Global
 		{8F4F382E-0D66-134B-BD47-51268FCFBA19}.Release|x64.Build.0 = Release|Any CPU
 		{8F4F382E-0D66-134B-BD47-51268FCFBA19}.Release|x86.ActiveCfg = Release|Any CPU
 		{8F4F382E-0D66-134B-BD47-51268FCFBA19}.Release|x86.Build.0 = Release|Any CPU
+		{54BADB52-6CD6-94C6-B6FA-E0A7D539B9EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54BADB52-6CD6-94C6-B6FA-E0A7D539B9EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54BADB52-6CD6-94C6-B6FA-E0A7D539B9EF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{54BADB52-6CD6-94C6-B6FA-E0A7D539B9EF}.Debug|x64.Build.0 = Debug|Any CPU
+		{54BADB52-6CD6-94C6-B6FA-E0A7D539B9EF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{54BADB52-6CD6-94C6-B6FA-E0A7D539B9EF}.Debug|x86.Build.0 = Debug|Any CPU
+		{54BADB52-6CD6-94C6-B6FA-E0A7D539B9EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54BADB52-6CD6-94C6-B6FA-E0A7D539B9EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54BADB52-6CD6-94C6-B6FA-E0A7D539B9EF}.Release|x64.ActiveCfg = Release|Any CPU
+		{54BADB52-6CD6-94C6-B6FA-E0A7D539B9EF}.Release|x64.Build.0 = Release|Any CPU
+		{54BADB52-6CD6-94C6-B6FA-E0A7D539B9EF}.Release|x86.ActiveCfg = Release|Any CPU
+		{54BADB52-6CD6-94C6-B6FA-E0A7D539B9EF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
