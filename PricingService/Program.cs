@@ -1,19 +1,17 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using PricingService.Domain;
 using Steeltoe.Discovery.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDiscoveryClient(builder.Configuration);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddEndpointsApiExplorer();
 
-// Add services to the container.
-// OpenAPI registration removed to avoid build-time source-generator dependency in this workspace
-builder.Services.AddDiscoveryClient(builder.Configuration);
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+builder.Services.AddSingleton<IDataStore, InMemoryDataStore>();
 
 var app = builder.Build();
 
@@ -57,15 +55,4 @@ record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 }
 public partial class Program
 {
-    public static IHostBuilder CreateWebHostBuilder(string[] args)
-    {
-        var builder = WebApplication.CreateBuilder(args);
-
-        // Register essential services similar to Program setup so integration tests can configure host
-        builder.Services.AddDiscoveryClient(builder.Configuration);
-        builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
-        builder.Services.AddControllers();
-
-        return builder.Host;
-    }
 }

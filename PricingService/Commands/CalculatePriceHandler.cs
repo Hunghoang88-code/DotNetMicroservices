@@ -1,4 +1,5 @@
-﻿using System.Threading;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
@@ -26,21 +27,25 @@ namespace PricingService.Commands
                 throw new ValidationException(validationResult.Errors);
             }
 
-            // Logic tính giá dựa trên Tariff
             var tariff = await _dataStore.Tariffs[request.ProductCode];
             if (tariff == null)
             {
                 return CalculatePriceResult.Empty();
             }
 
-            // Trả về kết quả tính toán (placeholder implementation)
-            var result = new CalculatePriceResult
-            {
-                TotalPrice = 100M,
-                CoverPrices = new System.Collections.Generic.Dictionary<string, decimal>()
-            };
+            var subject = request.Answers.ToDictionary(answer => answer.QuestionCode, answer => answer.GetAnswer());
+            var price = tariff.CalculatePrice(new Calculation(
+                request.ProductCode,
+                request.PolicyFrom,
+                request.PolicyTo,
+                request.SelectedCovers,
+                subject));
 
-            return result;
+            return new CalculatePriceResult
+            {
+                TotalPrice = price.TotalPremium,
+                CoverPrices = price.Covers.ToDictionary(cover => cover.Key, cover => cover.Value.Price)
+            };
         }
     }
 }

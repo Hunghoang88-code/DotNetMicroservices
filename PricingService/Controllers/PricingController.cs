@@ -1,4 +1,6 @@
+using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PricingService.Api.Commands;
@@ -19,8 +21,19 @@ namespace PricingService.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CalculatePriceCommand command)
         {
-            var result = await _mediator.Send(command);
-            return new JsonResult(result);
+            try
+            {
+                var result = await _mediator.Send(command);
+                return new JsonResult(result);
+            }
+            catch (ValidationException exception)
+            {
+                return BadRequest(exception.Errors.Select(error => new
+                {
+                    error.PropertyName,
+                    error.ErrorMessage
+                }));
+            }
         }
     }
 }
